@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dwood.lynkf.dao.DailySheetMapper" >
+  <resultMap id="BaseResultMap" type="com.dwood.lynkf.domain.DailySheet" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="work_date" property="workDate" jdbcType="VARCHAR" />
+    <result column="work_shift" property="workShift" jdbcType="VARCHAR" />
+    <result column="dept" property="dept" jdbcType="VARCHAR" />
+    <result column="foreman" property="foreman" jdbcType="VARCHAR" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+    <result column="time_plan" property="timePlan" jdbcType="VARCHAR" />
+    <result column="time_actual" property="timeActual" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="input_user" property="inputUser" jdbcType="VARCHAR" />
+    <result column="input_date" property="inputDate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, work_date, work_shift, dept, foreman, operator, time_plan, time_actual, note, 
+    input_user, input_date
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dwood.lynkf.domain.DailySheetCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t1001
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t1001
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t1001
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dwood.lynkf.domain.DailySheetCriteria" >
+    delete from t1001
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dwood.lynkf.domain.DailySheet" >
+    insert into t1001 (id, work_date, work_shift, 
+      dept, foreman, operator, 
+      time_plan, time_actual, note, 
+      input_user, input_date)
+    values (#{id,jdbcType=VARCHAR}, #{workDate,jdbcType=VARCHAR}, #{workShift,jdbcType=VARCHAR}, 
+      #{dept,jdbcType=VARCHAR}, #{foreman,jdbcType=VARCHAR}, #{operator,jdbcType=VARCHAR}, 
+      #{timePlan,jdbcType=VARCHAR}, #{timeActual,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, 
+      #{inputUser,jdbcType=VARCHAR}, #{inputDate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dwood.lynkf.domain.DailySheet" >
+    insert into t1001
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="workDate != null" >
+        work_date,
+      </if>
+      <if test="workShift != null" >
+        work_shift,
+      </if>
+      <if test="dept != null" >
+        dept,
+      </if>
+      <if test="foreman != null" >
+        foreman,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+      <if test="timePlan != null" >
+        time_plan,
+      </if>
+      <if test="timeActual != null" >
+        time_actual,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="inputUser != null" >
+        input_user,
+      </if>
+      <if test="inputDate != null" >
+        input_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="workDate != null" >
+        #{workDate,jdbcType=VARCHAR},
+      </if>
+      <if test="workShift != null" >
+        #{workShift,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null" >
+        #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="foreman != null" >
+        #{foreman,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="timePlan != null" >
+        #{timePlan,jdbcType=VARCHAR},
+      </if>
+      <if test="timeActual != null" >
+        #{timeActual,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="inputUser != null" >
+        #{inputUser,jdbcType=VARCHAR},
+      </if>
+      <if test="inputDate != null" >
+        #{inputDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dwood.lynkf.domain.DailySheetCriteria" resultType="java.lang.Integer" >
+    select count(*) from t1001
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t1001
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workDate != null" >
+        work_date = #{record.workDate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workShift != null" >
+        work_shift = #{record.workShift,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dept != null" >
+        dept = #{record.dept,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foreman != null" >
+        foreman = #{record.foreman,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operator != null" >
+        operator = #{record.operator,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timePlan != null" >
+        time_plan = #{record.timePlan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.timeActual != null" >
+        time_actual = #{record.timeActual,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputUser != null" >
+        input_user = #{record.inputUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputDate != null" >
+        input_date = #{record.inputDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t1001
+    set id = #{record.id,jdbcType=VARCHAR},
+      work_date = #{record.workDate,jdbcType=VARCHAR},
+      work_shift = #{record.workShift,jdbcType=VARCHAR},
+      dept = #{record.dept,jdbcType=VARCHAR},
+      foreman = #{record.foreman,jdbcType=VARCHAR},
+      operator = #{record.operator,jdbcType=VARCHAR},
+      time_plan = #{record.timePlan,jdbcType=VARCHAR},
+      time_actual = #{record.timeActual,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      input_user = #{record.inputUser,jdbcType=VARCHAR},
+      input_date = #{record.inputDate,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dwood.lynkf.domain.DailySheet" >
+    update t1001
+    <set >
+      <if test="workDate != null" >
+        work_date = #{workDate,jdbcType=VARCHAR},
+      </if>
+      <if test="workShift != null" >
+        work_shift = #{workShift,jdbcType=VARCHAR},
+      </if>
+      <if test="dept != null" >
+        dept = #{dept,jdbcType=VARCHAR},
+      </if>
+      <if test="foreman != null" >
+        foreman = #{foreman,jdbcType=VARCHAR},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+      <if test="timePlan != null" >
+        time_plan = #{timePlan,jdbcType=VARCHAR},
+      </if>
+      <if test="timeActual != null" >
+        time_actual = #{timeActual,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="inputUser != null" >
+        input_user = #{inputUser,jdbcType=VARCHAR},
+      </if>
+      <if test="inputDate != null" >
+        input_date = #{inputDate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dwood.lynkf.domain.DailySheet" >
+    update t1001
+    set work_date = #{workDate,jdbcType=VARCHAR},
+      work_shift = #{workShift,jdbcType=VARCHAR},
+      dept = #{dept,jdbcType=VARCHAR},
+      foreman = #{foreman,jdbcType=VARCHAR},
+      operator = #{operator,jdbcType=VARCHAR},
+      time_plan = #{timePlan,jdbcType=VARCHAR},
+      time_actual = #{timeActual,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      input_user = #{inputUser,jdbcType=VARCHAR},
+      input_date = #{inputDate,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

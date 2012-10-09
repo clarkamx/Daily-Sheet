@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" 
+"http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<classPathEntry location="E:\apache-maven-2.2.1\REPO\mysql\mysql-connector-java\5.1.17\mysql-connector-java-5.1.17.jar" />
+	
+	<context id="CCDatabase" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">  
+			<property name="searchString" value="Example$" />  
+			<property name="replaceString" value="Criteria" />  
+		</plugin>  
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3309/daily_sheet" userId="root" password="">
+		</jdbcConnection>
+		
+		<javaTypeResolver >
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.dwood.lynkf.domain" targetProject="Daily-Sheet\src\main\java\">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<sqlMapGenerator targetPackage="sqlMaps"  targetProject="Daily-Sheet\src\main\resources\">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<javaClientGenerator type="XMLMAPPER" targetPackage="com.dwood.lynkf.dao"  targetProject="Daily-Sheet\src\main\java\">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="t1001" domainObjectName="DailySheet">
+			<columnOverride column="time_plan" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="time_actual" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+		</table>
+		
+		<table tableName="t1002" domainObjectName="SheetDetail">
+			<columnOverride column="production_plan" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="work_time" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="yield" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="bad" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="repair" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="machine_anomaly" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="tool_anomaly" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="model_switch_plan" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="model_switch_actual" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="quality_deviation" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="not_overtime" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="staff_leave" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="stop_plan" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="fives_plan" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="fore_anomaly" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="power_anomaly" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="training" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="outs_box" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="wait_raw" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="try_work" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="wheel_truing" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+			<columnOverride column="other" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
+		</table>
+		
+		<table tableName="t1003" domainObjectName="User" />
+		
+	</context>
+</generatorConfiguration>

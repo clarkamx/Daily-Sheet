@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dwood.lynkf.dao.SheetDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.dwood.lynkf.domain.SheetDetail" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="customer" property="customer" jdbcType="VARCHAR" />
+    <result column="product" property="product" jdbcType="VARCHAR" />
+    <result column="ring_side" property="ringSide" jdbcType="VARCHAR" />
+    <result column="sealing" property="sealing" jdbcType="VARCHAR" />
+    <result column="production_plan" property="productionPlan" jdbcType="VARCHAR" />
+    <result column="raw" property="raw" jdbcType="VARCHAR" />
+    <result column="bundle" property="bundle" jdbcType="VARCHAR" />
+    <result column="batch" property="batch" jdbcType="VARCHAR" />
+    <result column="line" property="line" jdbcType="VARCHAR" />
+    <result column="work_time" property="workTime" jdbcType="VARCHAR" />
+    <result column="yield" property="yield" jdbcType="VARCHAR" />
+    <result column="bad" property="bad" jdbcType="VARCHAR" />
+    <result column="repair" property="repair" jdbcType="VARCHAR" />
+    <result column="machine_anomaly" property="machineAnomaly" jdbcType="VARCHAR" />
+    <result column="tool_anomaly" property="toolAnomaly" jdbcType="VARCHAR" />
+    <result column="model_switch_plan" property="modelSwitchPlan" jdbcType="VARCHAR" />
+    <result column="model_switch_actual" property="modelSwitchActual" jdbcType="VARCHAR" />
+    <result column="quality_deviation" property="qualityDeviation" jdbcType="VARCHAR" />
+    <result column="not_overtime" property="notOvertime" jdbcType="VARCHAR" />
+    <result column="staff_leave" property="staffLeave" jdbcType="VARCHAR" />
+    <result column="stop_plan" property="stopPlan" jdbcType="VARCHAR" />
+    <result column="fives_plan" property="fivesPlan" jdbcType="VARCHAR" />
+    <result column="fore_anomaly" property="foreAnomaly" jdbcType="VARCHAR" />
+    <result column="power_anomaly" property="powerAnomaly" jdbcType="VARCHAR" />
+    <result column="training" property="training" jdbcType="VARCHAR" />
+    <result column="outs_box" property="outsBox" jdbcType="VARCHAR" />
+    <result column="wait_raw" property="waitRaw" jdbcType="VARCHAR" />
+    <result column="try_work" property="tryWork" jdbcType="VARCHAR" />
+    <result column="wheel_truing" property="wheelTruing" jdbcType="VARCHAR" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, customer, product, ring_side, sealing, production_plan, raw, bundle, batch, line, 
+    work_time, yield, bad, repair, machine_anomaly, tool_anomaly, model_switch_plan, 
+    model_switch_actual, quality_deviation, not_overtime, staff_leave, stop_plan, fives_plan, 
+    fore_anomaly, power_anomaly, training, outs_box, wait_raw, try_work, wheel_truing, 
+    other
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.dwood.lynkf.domain.SheetDetailCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t1002
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t1002
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t1002
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.dwood.lynkf.domain.SheetDetailCriteria" >
+    delete from t1002
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.dwood.lynkf.domain.SheetDetail" >
+    insert into t1002 (id, customer, product, 
+      ring_side, sealing, production_plan, 
+      raw, bundle, batch, 
+      line, work_time, yield, 
+      bad, repair, machine_anomaly, 
+      tool_anomaly, model_switch_plan, model_switch_actual, 
+      quality_deviation, not_overtime, staff_leave, 
+      stop_plan, fives_plan, fore_anomaly, 
+      power_anomaly, training, outs_box, 
+      wait_raw, try_work, wheel_truing, 
+      other)
+    values (#{id,jdbcType=VARCHAR}, #{customer,jdbcType=VARCHAR}, #{product,jdbcType=VARCHAR}, 
+      #{ringSide,jdbcType=VARCHAR}, #{sealing,jdbcType=VARCHAR}, #{productionPlan,jdbcType=VARCHAR}, 
+      #{raw,jdbcType=VARCHAR}, #{bundle,jdbcType=VARCHAR}, #{batch,jdbcType=VARCHAR}, 
+      #{line,jdbcType=VARCHAR}, #{workTime,jdbcType=VARCHAR}, #{yield,jdbcType=VARCHAR}, 
+      #{bad,jdbcType=VARCHAR}, #{repair,jdbcType=VARCHAR}, #{machineAnomaly,jdbcType=VARCHAR}, 
+      #{toolAnomaly,jdbcType=VARCHAR}, #{modelSwitchPlan,jdbcType=VARCHAR}, #{modelSwitchActual,jdbcType=VARCHAR}, 
+      #{qualityDeviation,jdbcType=VARCHAR}, #{notOvertime,jdbcType=VARCHAR}, #{staffLeave,jdbcType=VARCHAR}, 
+      #{stopPlan,jdbcType=VARCHAR}, #{fivesPlan,jdbcType=VARCHAR}, #{foreAnomaly,jdbcType=VARCHAR}, 
+      #{powerAnomaly,jdbcType=VARCHAR}, #{training,jdbcType=VARCHAR}, #{outsBox,jdbcType=VARCHAR}, 
+      #{waitRaw,jdbcType=VARCHAR}, #{tryWork,jdbcType=VARCHAR}, #{wheelTruing,jdbcType=VARCHAR}, 
+      #{other,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dwood.lynkf.domain.SheetDetail" >
+    insert into t1002
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="customer != null" >
+        customer,
+      </if>
+      <if test="product != null" >
+        product,
+      </if>
+      <if test="ringSide != null" >
+        ring_side,
+      </if>
+      <if test="sealing != null" >
+        sealing,
+      </if>
+      <if test="productionPlan != null" >
+        production_plan,
+      </if>
+      <if test="raw != null" >
+        raw,
+      </if>
+      <if test="bundle != null" >
+        bundle,
+      </if>
+      <if test="batch != null" >
+        batch,
+      </if>
+      <if test="line != null" >
+        line,
+      </if>
+      <if test="workTime != null" >
+        work_time,
+      </if>
+      <if test="yield != null" >
+        yield,
+      </if>
+      <if test="bad != null" >
+        bad,
+      </if>
+      <if test="repair != null" >
+        repair,
+      </if>
+      <if test="machineAnomaly != null" >
+        machine_anomaly,
+      </if>
+      <if test="toolAnomaly != null" >
+        tool_anomaly,
+      </if>
+      <if test="modelSwitchPlan != null" >
+        model_switch_plan,
+      </if>
+      <if test="modelSwitchActual != null" >
+        model_switch_actual,
+      </if>
+      <if test="qualityDeviation != null" >
+        quality_deviation,
+      </if>
+      <if test="notOvertime != null" >
+        not_overtime,
+      </if>
+      <if test="staffLeave != null" >
+        staff_leave,
+      </if>
+      <if test="stopPlan != null" >
+        stop_plan,
+      </if>
+      <if test="fivesPlan != null" >
+        fives_plan,
+      </if>
+      <if test="foreAnomaly != null" >
+        fore_anomaly,
+      </if>
+      <if test="powerAnomaly != null" >
+        power_anomaly,
+      </if>
+      <if test="training != null" >
+        training,
+      </if>
+      <if test="outsBox != null" >
+        outs_box,
+      </if>
+      <if test="waitRaw != null" >
+        wait_raw,
+      </if>
+      <if test="tryWork != null" >
+        try_work,
+      </if>
+      <if test="wheelTruing != null" >
+        wheel_truing,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="customer != null" >
+        #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null" >
+        #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="ringSide != null" >
+        #{ringSide,jdbcType=VARCHAR},
+      </if>
+      <if test="sealing != null" >
+        #{sealing,jdbcType=VARCHAR},
+      </if>
+      <if test="productionPlan != null" >
+        #{productionPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="raw != null" >
+        #{raw,jdbcType=VARCHAR},
+      </if>
+      <if test="bundle != null" >
+        #{bundle,jdbcType=VARCHAR},
+      </if>
+      <if test="batch != null" >
+        #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="line != null" >
+        #{line,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null" >
+        #{workTime,jdbcType=VARCHAR},
+      </if>
+      <if test="yield != null" >
+        #{yield,jdbcType=VARCHAR},
+      </if>
+      <if test="bad != null" >
+        #{bad,jdbcType=VARCHAR},
+      </if>
+      <if test="repair != null" >
+        #{repair,jdbcType=VARCHAR},
+      </if>
+      <if test="machineAnomaly != null" >
+        #{machineAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="toolAnomaly != null" >
+        #{toolAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="modelSwitchPlan != null" >
+        #{modelSwitchPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="modelSwitchActual != null" >
+        #{modelSwitchActual,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityDeviation != null" >
+        #{qualityDeviation,jdbcType=VARCHAR},
+      </if>
+      <if test="notOvertime != null" >
+        #{notOvertime,jdbcType=VARCHAR},
+      </if>
+      <if test="staffLeave != null" >
+        #{staffLeave,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPlan != null" >
+        #{stopPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="fivesPlan != null" >
+        #{fivesPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="foreAnomaly != null" >
+        #{foreAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="powerAnomaly != null" >
+        #{powerAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="training != null" >
+        #{training,jdbcType=VARCHAR},
+      </if>
+      <if test="outsBox != null" >
+        #{outsBox,jdbcType=VARCHAR},
+      </if>
+      <if test="waitRaw != null" >
+        #{waitRaw,jdbcType=VARCHAR},
+      </if>
+      <if test="tryWork != null" >
+        #{tryWork,jdbcType=VARCHAR},
+      </if>
+      <if test="wheelTruing != null" >
+        #{wheelTruing,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.dwood.lynkf.domain.SheetDetailCriteria" resultType="java.lang.Integer" >
+    select count(*) from t1002
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t1002
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.customer != null" >
+        customer = #{record.customer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.product != null" >
+        product = #{record.product,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ringSide != null" >
+        ring_side = #{record.ringSide,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sealing != null" >
+        sealing = #{record.sealing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productionPlan != null" >
+        production_plan = #{record.productionPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.raw != null" >
+        raw = #{record.raw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bundle != null" >
+        bundle = #{record.bundle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.batch != null" >
+        batch = #{record.batch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.line != null" >
+        line = #{record.line,jdbcType=VARCHAR},
+      </if>
+      <if test="record.workTime != null" >
+        work_time = #{record.workTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.yield != null" >
+        yield = #{record.yield,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bad != null" >
+        bad = #{record.bad,jdbcType=VARCHAR},
+      </if>
+      <if test="record.repair != null" >
+        repair = #{record.repair,jdbcType=VARCHAR},
+      </if>
+      <if test="record.machineAnomaly != null" >
+        machine_anomaly = #{record.machineAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.toolAnomaly != null" >
+        tool_anomaly = #{record.toolAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelSwitchPlan != null" >
+        model_switch_plan = #{record.modelSwitchPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelSwitchActual != null" >
+        model_switch_actual = #{record.modelSwitchActual,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qualityDeviation != null" >
+        quality_deviation = #{record.qualityDeviation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notOvertime != null" >
+        not_overtime = #{record.notOvertime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffLeave != null" >
+        staff_leave = #{record.staffLeave,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stopPlan != null" >
+        stop_plan = #{record.stopPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fivesPlan != null" >
+        fives_plan = #{record.fivesPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.foreAnomaly != null" >
+        fore_anomaly = #{record.foreAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.powerAnomaly != null" >
+        power_anomaly = #{record.powerAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="record.training != null" >
+        training = #{record.training,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outsBox != null" >
+        outs_box = #{record.outsBox,jdbcType=VARCHAR},
+      </if>
+      <if test="record.waitRaw != null" >
+        wait_raw = #{record.waitRaw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tryWork != null" >
+        try_work = #{record.tryWork,jdbcType=VARCHAR},
+      </if>
+      <if test="record.wheelTruing != null" >
+        wheel_truing = #{record.wheelTruing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other != null" >
+        other = #{record.other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t1002
+    set id = #{record.id,jdbcType=VARCHAR},
+      customer = #{record.customer,jdbcType=VARCHAR},
+      product = #{record.product,jdbcType=VARCHAR},
+      ring_side = #{record.ringSide,jdbcType=VARCHAR},
+      sealing = #{record.sealing,jdbcType=VARCHAR},
+      production_plan = #{record.productionPlan,jdbcType=VARCHAR},
+      raw = #{record.raw,jdbcType=VARCHAR},
+      bundle = #{record.bundle,jdbcType=VARCHAR},
+      batch = #{record.batch,jdbcType=VARCHAR},
+      line = #{record.line,jdbcType=VARCHAR},
+      work_time = #{record.workTime,jdbcType=VARCHAR},
+      yield = #{record.yield,jdbcType=VARCHAR},
+      bad = #{record.bad,jdbcType=VARCHAR},
+      repair = #{record.repair,jdbcType=VARCHAR},
+      machine_anomaly = #{record.machineAnomaly,jdbcType=VARCHAR},
+      tool_anomaly = #{record.toolAnomaly,jdbcType=VARCHAR},
+      model_switch_plan = #{record.modelSwitchPlan,jdbcType=VARCHAR},
+      model_switch_actual = #{record.modelSwitchActual,jdbcType=VARCHAR},
+      quality_deviation = #{record.qualityDeviation,jdbcType=VARCHAR},
+      not_overtime = #{record.notOvertime,jdbcType=VARCHAR},
+      staff_leave = #{record.staffLeave,jdbcType=VARCHAR},
+      stop_plan = #{record.stopPlan,jdbcType=VARCHAR},
+      fives_plan = #{record.fivesPlan,jdbcType=VARCHAR},
+      fore_anomaly = #{record.foreAnomaly,jdbcType=VARCHAR},
+      power_anomaly = #{record.powerAnomaly,jdbcType=VARCHAR},
+      training = #{record.training,jdbcType=VARCHAR},
+      outs_box = #{record.outsBox,jdbcType=VARCHAR},
+      wait_raw = #{record.waitRaw,jdbcType=VARCHAR},
+      try_work = #{record.tryWork,jdbcType=VARCHAR},
+      wheel_truing = #{record.wheelTruing,jdbcType=VARCHAR},
+      other = #{record.other,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dwood.lynkf.domain.SheetDetail" >
+    update t1002
+    <set >
+      <if test="customer != null" >
+        customer = #{customer,jdbcType=VARCHAR},
+      </if>
+      <if test="product != null" >
+        product = #{product,jdbcType=VARCHAR},
+      </if>
+      <if test="ringSide != null" >
+        ring_side = #{ringSide,jdbcType=VARCHAR},
+      </if>
+      <if test="sealing != null" >
+        sealing = #{sealing,jdbcType=VARCHAR},
+      </if>
+      <if test="productionPlan != null" >
+        production_plan = #{productionPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="raw != null" >
+        raw = #{raw,jdbcType=VARCHAR},
+      </if>
+      <if test="bundle != null" >
+        bundle = #{bundle,jdbcType=VARCHAR},
+      </if>
+      <if test="batch != null" >
+        batch = #{batch,jdbcType=VARCHAR},
+      </if>
+      <if test="line != null" >
+        line = #{line,jdbcType=VARCHAR},
+      </if>
+      <if test="workTime != null" >
+        work_time = #{workTime,jdbcType=VARCHAR},
+      </if>
+      <if test="yield != null" >
+        yield = #{yield,jdbcType=VARCHAR},
+      </if>
+      <if test="bad != null" >
+        bad = #{bad,jdbcType=VARCHAR},
+      </if>
+      <if test="repair != null" >
+        repair = #{repair,jdbcType=VARCHAR},
+      </if>
+      <if test="machineAnomaly != null" >
+        machine_anomaly = #{machineAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="toolAnomaly != null" >
+        tool_anomaly = #{toolAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="modelSwitchPlan != null" >
+        model_switch_plan = #{modelSwitchPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="modelSwitchActual != null" >
+        model_switch_actual = #{modelSwitchActual,jdbcType=VARCHAR},
+      </if>
+      <if test="qualityDeviation != null" >
+        quality_deviation = #{qualityDeviation,jdbcType=VARCHAR},
+      </if>
+      <if test="notOvertime != null" >
+        not_overtime = #{notOvertime,jdbcType=VARCHAR},
+      </if>
+      <if test="staffLeave != null" >
+        staff_leave = #{staffLeave,jdbcType=VARCHAR},
+      </if>
+      <if test="stopPlan != null" >
+        stop_plan = #{stopPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="fivesPlan != null" >
+        fives_plan = #{fivesPlan,jdbcType=VARCHAR},
+      </if>
+      <if test="foreAnomaly != null" >
+        fore_anomaly = #{foreAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="powerAnomaly != null" >
+        power_anomaly = #{powerAnomaly,jdbcType=VARCHAR},
+      </if>
+      <if test="training != null" >
+        training = #{training,jdbcType=VARCHAR},
+      </if>
+      <if test="outsBox != null" >
+        outs_box = #{outsBox,jdbcType=VARCHAR},
+      </if>
+      <if test="waitRaw != null" >
+        wait_raw = #{waitRaw,jdbcType=VARCHAR},
+      </if>
+      <if test="tryWork != null" >
+        try_work = #{tryWork,jdbcType=VARCHAR},
+      </if>
+      <if test="wheelTruing != null" >
+        wheel_truing = #{wheelTruing,jdbcType=VARCHAR},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dwood.lynkf.domain.SheetDetail" >
+    update t1002
+    set customer = #{customer,jdbcType=VARCHAR},
+      product = #{product,jdbcType=VARCHAR},
+      ring_side = #{ringSide,jdbcType=VARCHAR},
+      sealing = #{sealing,jdbcType=VARCHAR},
+      production_plan = #{productionPlan,jdbcType=VARCHAR},
+      raw = #{raw,jdbcType=VARCHAR},
+      bundle = #{bundle,jdbcType=VARCHAR},
+      batch = #{batch,jdbcType=VARCHAR},
+      line = #{line,jdbcType=VARCHAR},
+      work_time = #{workTime,jdbcType=VARCHAR},
+      yield = #{yield,jdbcType=VARCHAR},
+      bad = #{bad,jdbcType=VARCHAR},
+      repair = #{repair,jdbcType=VARCHAR},
+      machine_anomaly = #{machineAnomaly,jdbcType=VARCHAR},
+      tool_anomaly = #{toolAnomaly,jdbcType=VARCHAR},
+      model_switch_plan = #{modelSwitchPlan,jdbcType=VARCHAR},
+      model_switch_actual = #{modelSwitchActual,jdbcType=VARCHAR},
+      quality_deviation = #{qualityDeviation,jdbcType=VARCHAR},
+      not_overtime = #{notOvertime,jdbcType=VARCHAR},
+      staff_leave = #{staffLeave,jdbcType=VARCHAR},
+      stop_plan = #{stopPlan,jdbcType=VARCHAR},
+      fives_plan = #{fivesPlan,jdbcType=VARCHAR},
+      fore_anomaly = #{foreAnomaly,jdbcType=VARCHAR},
+      power_anomaly = #{powerAnomaly,jdbcType=VARCHAR},
+      training = #{training,jdbcType=VARCHAR},
+      outs_box = #{outsBox,jdbcType=VARCHAR},
+      wait_raw = #{waitRaw,jdbcType=VARCHAR},
+      try_work = #{tryWork,jdbcType=VARCHAR},
+      wheel_truing = #{wheelTruing,jdbcType=VARCHAR},
+      other = #{other,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

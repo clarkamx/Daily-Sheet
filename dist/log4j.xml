@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	
+	<appender name="filelog" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="Log.txt"/>
+		<param name="Append" value="false"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%F:%L] - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.dwood.quotation">
+		<level value="info" />
+	</logger>
+	
+	<!-- apache包要输出error以上等级的日志 -->
+	<logger name="org.apache">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.apache.struts2">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.springframework">
+		<level value="info" />
+	</logger>
+
+	<logger name="org.ourpioneer">
+		<level value="info" />
+	</logger>
+
+	<logger name="java.sql.Connection">
+		<level value="info" />
+	</logger>
+
+	<logger name="java.sql.Statement">
+		<level value="info" />
+	</logger>
+
+	<logger name="java.sql.PreparedStatement">
+		<level value="info" />
+	</logger>
+
+	<logger name="java.sql.ResultSet">
+		<level value="info" />
+	</logger>
+
+	<root>
+		<priority value="warn" />
+		<appender-ref ref="filelog" /> 
+	</root>
+</log4j:configuration>
