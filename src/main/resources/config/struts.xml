@@ -7,13 +7,9 @@
 	<include file="struts-default.xml"></include>
 	<include file="struts-plugin.xml"></include>
 	<package name="default" namespace="/" extends="struts-default">
+		<default-action-ref name="index" />
 		<action name="index">
 			<result>/index.jsp</result>
-		</action>
-	</package>
-	<package name="XXX" namespace="/XXX" extends="json-default">
-		<action name="XXX" class="XXX" method="XXX">
-			<result type="json" />
 		</action>
 	</package>
 </struts>

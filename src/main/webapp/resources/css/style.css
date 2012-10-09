@@ -1,0 +1,17 @@
+@CHARSET "UTF-8";
+
+#header h1 {
+	font-size: 16px;
+	color: #fff;
+	padding: 3px 10px;
+	font-family: "微软雅黑", "黑体"
+}
+
+.home {
+	background-image: url(../images/home.png) !important;
+	line-height: 30px;
+}
+
+.icon-menu {
+	background-image: url(../images/menuPanel/menu.png) !important;
+}
