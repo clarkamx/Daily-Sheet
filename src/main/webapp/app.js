@@ -4,6 +4,7 @@ Ext.Loader.setConfig({
 		});
 Ext.application({
 			name : 'DS',//
+			autoCreateViewport: true,
 			appFolder : 'app',
 			controllers : ['Main']
 		});

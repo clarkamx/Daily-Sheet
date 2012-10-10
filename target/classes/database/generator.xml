@@ -30,7 +30,7 @@
 		<javaClientGenerator type="XMLMAPPER" targetPackage="com.dwood.lynkf.dao"  targetProject="Daily-Sheet\src\main\java\">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
-
+<!-- 
 		<table tableName="t1001" domainObjectName="DailySheet">
 			<columnOverride column="time_plan" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
 			<columnOverride column="time_actual" javaType="java.math.BigDecimal" jdbcType="VARCHAR" />
@@ -62,6 +62,9 @@
 		</table>
 		
 		<table tableName="t1003" domainObjectName="User" />
-		
+-->		
+		<table tableName="t1004" domainObjectName="Menu">
+			<generatedKey column="id" sqlStatement="mysql"/>
+		</table>
 	</context>
 </generatorConfiguration>

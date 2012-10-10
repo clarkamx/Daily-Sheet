@@ -12,4 +12,9 @@
 			<result>/index.jsp</result>
 		</action>
 	</package>
+	<package name="biz" namespace="/biz" extends="json-default">
+		<action name="loadTreeNode" class="menuAction" method="loadTreeNode">
+			<result type="json" />
+		</action>
+	</package>
 </struts>

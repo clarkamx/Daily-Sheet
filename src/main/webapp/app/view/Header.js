@@ -5,8 +5,8 @@ Ext.define('DS.view.Header', {
 			xtype : 'box',
 			cls : 'header',
 			region : 'north',
-			html : '<h1>HSK数据库</h1>',
-			height : 30
+			html : '<h1>HSK日报数据库</h1>',
+			height : 50
 		});
 		this.callParent(arguments);
 	}

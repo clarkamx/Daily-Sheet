@@ -27,10 +27,8 @@
         <property name="dataSource" ref="dataSource" />
     </bean>
     
-    <!-- enable component scanning (beware that this does not enable mapper scanning!) -->    
-    <context:component-scan base-package="com.dwood.lynkf.service.impl" />
-    <context:component-scan base-package="com.dwood.lynkf.action" />
-
+	<context:annotation-config />
+	
     <!-- enable transaction demarcation with annotations -->
     <tx:annotation-driven />
     
@@ -40,8 +38,16 @@
         <property name="typeAliasesPackage" value="com.dwood.lynkf.domain" /> 
     </bean>
 	
-    <!-- scan for mappers and let them be autowired -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.dwood.lynkf.dao" />
+	<bean id="menuDao"  class="org.mybatis.spring.mapper.MapperFactoryBean">
+    	<property name="mapperInterface" value="com.dwood.lynkf.dao.MenuMapper"/>  
+    	<property name="sqlSessionFactory" ref="sqlSessionFactory" />  
+    </bean>
+    
+    <bean id="menuService" class="com.dwood.lynkf.service.impl.MenuServiceImpl">
+    	<property name="menuDao" ref="menuDao"/>
+    </bean>
+	
+	<bean id="menuAction" class="com.dwood.lynkf.action.MenuAction" scope="prototype">
+    	<property name="menuService" ref="menuService"/>
     </bean>
 </beans>
