@@ -10,7 +10,7 @@
 		</layout>
 	</appender>
 
-	<logger name="com.dwood.quotation">
+	<logger name="com.dwood.lynkf">
 		<level value="debug" />
 	</logger>
 	

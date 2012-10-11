@@ -2,6 +2,8 @@ package com.dwood.lynkf.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -11,11 +13,8 @@ import com.dwood.lynkf.domain.MenuCriteria;
 import com.dwood.lynkf.service.MenuService;
 
 public class MenuServiceImpl implements MenuService {
+	@Autowired
 	private MenuMapper menuDao;
-
-	public void setMenuDao(MenuMapper menuDao) {
-		this.menuDao = menuDao;
-	}
 
 	@Override
 	public JSONArray loadMenu(String parentId) throws Exception {

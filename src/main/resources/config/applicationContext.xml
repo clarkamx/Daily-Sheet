@@ -35,7 +35,11 @@
     <!-- Mybatis的Session工厂 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
-        <property name="typeAliasesPackage" value="com.dwood.lynkf.domain" /> 
+        <property name="mapperLocations">
+        	<list>
+        		<value>classpath:sqlMaps/*Mapper.xml</value>
+        	</list>
+        </property>
     </bean>
 	
 	<bean id="menuDao"  class="org.mybatis.spring.mapper.MapperFactoryBean">
@@ -43,11 +47,7 @@
     	<property name="sqlSessionFactory" ref="sqlSessionFactory" />  
     </bean>
     
-    <bean id="menuService" class="com.dwood.lynkf.service.impl.MenuServiceImpl">
-    	<property name="menuDao" ref="menuDao"/>
-    </bean>
+    <bean id="menuService" class="com.dwood.lynkf.service.impl.MenuServiceImpl" />
 	
-	<bean id="menuAction" class="com.dwood.lynkf.action.MenuAction" scope="prototype">
-    	<property name="menuService" ref="menuService"/>
-    </bean>
+	<bean id="menuAction" class="com.dwood.lynkf.action.MenuAction" scope="prototype" />
 </beans>

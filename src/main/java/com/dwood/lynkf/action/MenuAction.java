@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import com.dwood.lynkf.common.util.MLogger;
 import com.dwood.lynkf.service.MenuService;
 
 public class MenuAction {
+	@Autowired
 	private MenuService menuService;
 	
 	private String parentId;
-
-	public void setMenuService(MenuService menuService) {
-		this.menuService = menuService;
-	}
 
 	public void setParentId(String parentId) {
 		this.parentId = parentId;
@@ -33,7 +32,8 @@ public class MenuAction {
         try {
         	jsonArray = menuService.loadMenu(parentId);
 		} catch (Exception e) {
-			jsonArray = null;
+			MLogger.getLogger().error(e.getMessage());
+			jsonArray = new JSONArray();
 		} finally {
 			out.write(jsonArray.toString());
 			out.flush();
